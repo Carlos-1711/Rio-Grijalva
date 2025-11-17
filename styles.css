@@ -1,0 +1,512 @@
+/* ==== VARIABLES ==== */
+:root {
+  --azul-marino: #014F86;
+  --azul-cielo: #71C9CE;
+  --verde-bosque: #2A7F62;
+  --blanco: #FFFFFF;
+  --gris: #f5f5f5;
+  --texto: #222;
+  --dorado: #C9A227;
+  --arena: #f0d28b;
+}
+
+/* ==== RESET ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--blanco);
+  color: var(--texto);
+  overflow-x: hidden;
+}
+
+/* ==== LOADER ==== */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #b2f0f2, #2a7f62);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  flex-direction: column;
+  transition: opacity 1s ease;
+}
+
+.loader-content {
+  text-align: center;
+  color: #fff;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.loader-logo {
+  width: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+.loader-characters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.loader-characters img {
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: floatIn 1.5s ease-in-out forwards;
+}
+
+@keyframes floatIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  50% { opacity: 1; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.loader-bar {
+  width: 200px;
+  height: 8px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 20px;
+  margin: 15px auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-bar::before {
+  content: "";
+  position: absolute;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: var(--blanco);
+  animation: progress 1.2s infinite ease-in-out;
+}
+
+@keyframes progress {
+  0% { left: -40%; }
+  50% { left: 100%; }
+  100% { left: -40%; }
+}
+
+.impact-text {
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 5px;
+  color: #f3f3f3;
+}
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fade-in {
+  animation: fadeIn 1.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: linear-gradient(90deg, var(--azul-marino), var(--verde-bosque));
+  color: var(--blanco);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.header.scrolled {
+  background: linear-gradient(90deg, #013b64, #1d5c47);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover { transform: scale(1.1); }
+
+.logo img {
+  width: 45px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.logo span {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--blanco);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--arena);
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--arena);
+}
+
+/* ==== HERO ==== */
+.hero {
+  position: relative;
+  background: url('img/rio-sumidero.jpg') center/cover no-repeat;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--blanco);
+}
+
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 700px;
+}
+
+.hero h1 {
+  font-size: 2.3rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.hero-link {
+  background: var(--verde-bosque);
+  color: var(--blanco);
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.hero-link:hover {
+  background: var(--azul-cielo);
+}
+
+/* ==== CARRUSEL ==== */
+.carrusel-section {
+  background: var(--gris);
+  padding: 60px 0;
+  text-align: center;
+}
+
+.carrusel-section h2 {
+  margin-bottom: 25px;
+  color: var(--azul-marino);
+}
+
+/* Marco azul y efecto hover */
+.carousel-container {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 4px solid var(--azul-marino); /* marco azul*/
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  position: relative;
+  background: var(--blanco);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.carousel-slide {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+  width: 100%;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+/* ==== BOTONES ==== */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: var(--blanco);
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 50%;
+  transition: background 0.3s;
+  z-index: 10;
+}
+
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* ==== VIDEO ==== */
+.video-section {
+  padding: 60px 0;
+  text-align: center;
+  background-color: var(--blanco);
+}
+
+.video-section h2 {
+  margin-bottom: 25px;
+  color: var(--azul-marino);
+}
+
+/* ==== CONTENEDOR DEL VIDEO ==== */
+.video-container {
+  position: relative;
+  max-width: 720px;
+  margin: 30px auto;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 4px solid var(--azul-marino);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-container::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.video-container iframe,
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  border-radius: 0;
+}
+
+.video-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ==== MISIÓN ==== */
+.mision {
+  background-color: var(--azul-cielo);
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--blanco);
+}
+
+.mision h2 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+.mision p {
+  max-width: 700px;
+  margin: auto;
+}
+
+/* ==== DATOS ==== */
+.datos {
+  padding: 60px 20px;
+  background-color: var(--gris);
+  text-align: center;
+}
+
+.datos h2 {
+  color: var(--azul-marino);
+  margin-bottom: 30px;
+}
+
+.datos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  width: 90%;
+  margin: auto;
+}
+
+/* ===== TARJETAS DATOS INTERACTIVAS ===== */
+.dato-card {
+  background-color: var(--blanco);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1),
+              box-shadow 320ms cubic-bezier(.2,.9,.2,1),
+              background-color 320ms ease,
+              color 320ms ease;
+  text-decoration: none;
+  color: var(--texto);
+  display: block;
+  cursor: pointer;
+  will-change: transform, box-shadow;
+  transform-origin: center;
+}
+
+.dato-card h3 {
+  color: var(--verde-bosque);
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  transition: color 320ms ease;
+}
+
+.dato-card p {
+  transition: color 320ms ease;
+}
+
+@keyframes dato-bob {
+  0% { transform: translateY(-8px) scale(1.03); }
+  50% { transform: translateY(-5px) scale(1.03); }
+  100% { transform: translateY(-8px) scale(1.03); }
+}
+
+.dato-card:hover,
+.dato-card:focus {
+  background: var(--arena);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+  transform: translateY(-8px) scale(1.03);
+  outline: none;
+}
+
+.dato-card:hover {
+  animation: dato-bob 1.6s ease-in-out infinite;
+}
+
+.dato-card:hover h3,
+.dato-card:hover p {
+  color: var(--azul-marino);
+}
+
+/* ==== ACCIÓN ==== */
+.accion {
+  background: linear-gradient(135deg, var(--verde-bosque), var(--azul-marino));
+  color: var(--blanco);
+  text-align: center;
+  padding: 70px 20px;
+}
+
+.accion h2 {
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+
+.btn-accion {
+  background-color: var(--dorado);
+  color: var(--blanco);
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.3s;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.btn-accion:hover {
+  background-color: var(--azul-cielo);
+  transform: translateY(-3px);
+}
+
+/* ==== FOOTER ==== */
+footer {
+  background-color: var(--azul-marino);
+  color: var(--blanco);
+  text-align: center;
+  padding: 15px 0;
+}
+
+.footer-bottom {
+  font-size: 0.9rem;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 1.7rem; }
+  .hero p { font-size: 1rem; }
+  .nav-links { flex-direction: column; gap: 10px; }
+  .carousel-slide img { height: 300px; }
+
+  .video-container {
+    max-width: 95%;
+  }
+}

@@ -1,0 +1,572 @@
+:root {
+  --bg1:#e6fff4;
+  --bg2:#e6f7ff;
+  --card:#ffffff;
+  --accent:#24c27a;
+  --accent2:#20a4d6;
+  --dark:#05386b;
+  --muted:#6b7b86;
+
+  /* colores del sitio principal */
+  --color-primary: #2e7d32;
+  --color-text-light: #ffffff;
+}
+
+/* ===== HEADER ===== */
+header.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent; /* ahora es totalmente transparente */
+  color: white;
+  box-shadow: none; /* quita la sombra blanca */
+  z-index: 1000;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+
+/* Estado con scroll */
+header.header.scrolled {
+  background: linear-gradient(90deg, #ffffff, #ffffff);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* Contenedor del nav */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 40px;
+}
+
+/* Logo pegado a la izquierda */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+}
+
+.logo span {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+/* Navegación a la derecha */
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.3s;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  width: 100%;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #c8ffec;
+}
+
+/* ==== FOOTER ==== */
+footer {
+  background-color: #01577a;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.footer-bottom {
+  font-size: 0.9rem;
+}
+
+/* -----------------------------------
+   CONTENIDO DEL JUEGO
+----------------------------------- */
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+  background: url('img/fondo-rio.jpg') no-repeat center center fixed;
+  background-size: cover; /* hace que la imagen cubra todo el fondo */
+  color: var(--dark);
+  padding-top: 90px; /* para que el juego no quede debajo del menú */
+}
+
+/* --- JUEGO --- */
+.container{max-width:1200px;margin:18px auto;padding:18px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;gap:12px;align-items:center}
+
+/* antes .logo genera conflicto, ahora se llama .game-logo */
+.game-logo {
+  width:64px;height:64px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),#27ae60);
+  display:grid;place-items:center;
+  color:white;font-weight:900;
+  box-shadow:0 10px 30px rgba(36,194,122,.14)
+}
+
+.title{font-size:20px;font-weight:800}
+.subtitle{color:var(--muted);font-size:13px}
+.controls {display: flex; gap: 10px;align-items: center;justify-content: flex-end;}
+.select,.btn{padding:10px 14px;border-radius:10px;border:0;background:var(--card);box-shadow:0 8px 26px rgba(4,56,83,.06);cursor:pointer;font-weight:800}
+.btn.primary{background:linear-gradient(180deg,var(--accent),#1ea667);color:white}
+.layout{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:16px}
+.panel{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 10px 34px rgba(23, 174, 255, 0.06)}
+.grid-wrap{display:flex;flex-direction:column;align-items:center}
+.info-row{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:8px;width:100%}
+.stats{display:flex;gap:8px;align-items:center}
+.stat{background:linear-gradient(180deg,#fff,#f7fffb);padding:8px 10px;border-radius:10px;font-weight:800;box-shadow:inset 0 -6px 16px rgba(0,0,0,.02)}
+#grid{display:grid;gap:6px;background:linear-gradient(180deg,#ffffff,#f6fffb);padding:16px;border-radius:12px;min-width:200px;min-height:200px;position:relative}
+.cell{width:var(--cell-size,44px);height:var(--cell-size,44px);background:linear-gradient(180deg,#fff,#f9fbff);border-radius:10px;display:grid;place-items:center;font-weight:900;cursor:pointer;user-select:none;border:2px solid rgba(4,56,83,.04);transition:transform .12s,box-shadow .12s}
+.cell:hover{transform:translateY(-6%);box-shadow:0 10px 20px rgba(4,56,83,.06)}
+.cell.selected{background:linear-gradient(180deg,#fff7de,#fff0b2);transform:scale(1.03)}
+.cell.found{background:linear-gradient(180deg,var(--accent2),#4aa3ff);color:#03263a;box-shadow:0 10px 28px rgba(34,115,205,.12);animation:pop .36s}
+@keyframes pop{0%{transform:scale(.9)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+.word-list{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.word{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:12px;background:linear-gradient(180deg,#fbfffe,#f0fcff);font-weight:800;box-shadow:0 6px 18px rgba(4,56,83,.04)}
+.word .tag{padding:6px 10px;border-radius:8px;background:linear-gradient(180deg,#fff,#f3fbff)}
+.word.found{background:linear-gradient(180deg,#eafff7,#e6f6ff);text-decoration:line-through;color:#077d61}
+.footer{margin-top:12px;font-size:13px;color:var(--muted)}
+.small{font-size:13px;color:var(--muted)}
+.hintFlash{animation:flash 1.2s}
+@keyframes flash{0%{transform:translateY(-6%);opacity:1}100%{transform:none;opacity:1}}
+.confetti{position:absolute;pointer-events:none;z-index:9999}
+.confetti span{position:absolute;will-change:transform,opacity}
+@keyframes fall{to{transform:translateY(600px) rotate(720deg);opacity:0}}
+@media (max-width:1000px){.layout{grid-template-columns:1fr}.controls{flex-wrap:wrap}.cell{width:var(--cell-size,36px);height:var(--cell-size,36px)}}
+
+/* Modal */
+#winModal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(4px);
+  z-index:10000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+#winModal .box {
+  background:linear-gradient(180deg,#e6fff4,#e6f7ff);
+  border-radius:20px;
+  padding:30px 40px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.2);
+  text-align:center;
+  animation:popIn .5s ease;
+}
+#winModal h2 {
+  color:var(--accent2);
+  font-size:28px;
+  margin:0 0 10px;
+}
+#winModal p {
+  font-size:18px;
+  color:var(--dark);
+  font-weight:700;
+}
+#winModal .actions{margin-top:14px;display:flex;gap:10px;justify-content:center}
+#winModal .btn {padding:8px 12px;border-radius:10px;font-weight:800}
+
+/* Motivación */
+.motiv {
+  position:absolute;
+  z-index:10001;
+  background:linear-gradient(180deg,#ffffff,#f3fbff);
+  color:var(--accent);
+  padding:8px 14px;
+  border-radius:12px;
+  font-weight:800;
+  font-size:15px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.1);
+  animation:floatUp 1.2s ease-out forwards;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-40px);opacity:0}
+}
+
+@keyframes popIn {
+  0%{transform:scale(.8);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}
+
+/* ======= HISTORIAL DE PUNTAJES ======= */
+#scoreHistoryPanel {
+  margin-top: 30px;
+}
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-weight: 700;
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.score-table th, .score-table td {
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.score-table thead {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color: white;
+}
+
+.score-table tr:nth-child(even) {
+  background-color: #f9fdfd;
+}
+/* ==== AJUSTE FINAL DEL HEADER Y LOGO ==== */
+
+header.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #01577a, #007f5f);
+  color: white;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  z-index: 1000;
+}
+
+/* Contenedor del nav */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 40px;
+  box-sizing: border-box;
+}
+
+/* LOGO completamente a la izquierda */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-right: auto; /* fuerza que se pegue a la izquierda */
+}
+
+.logo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+}
+
+.logo span {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+/* NAV LINKS a la derecha */
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin-left: auto; /* empuja los links a la derecha */
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #c8ffec;
+}
+/* === CAMBIO DE COLOR HOVER A ARENA === */
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #d2b48c; /* color arena */
+}
+.nav-links li a::after {
+  background-color: #d2b48c; /* subrayado color arena */
+}
+/* ======== ESTILO GAMER NEÓN PARA LA SOPA DE LETRAS ======== */
+
+
+/* Tablero */
+#grid {
+  background: rgba(0, 0, 0, 0.4); /* negro semi-transparente */
+  border: 2px solid #00ffc300;
+  box-shadow: 0 0 25px rgba(43, 220, 179, 0), inset 0 0 15px rgb(255, 255, 255);
+  border-radius: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+
+/* Celdas */
+.cell {
+  background: rgba(6, 6, 6, 0.6); /* azul semitransparente */
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  border: 1px solid rgba(0, 255, 195, 0.15);
+  box-shadow: 0 0 8px rgba(0, 255, 195, 0.1);
+  text-shadow: 0 0 8px rgba(0, 255, 195, 0.5);
+  transition: all 0.2s ease;
+}
+
+.cell:hover {
+  transform: scale(1.1);
+  background: rgba(76, 165, 209, 0.7); /* azul un poco más intenso al hover */
+  box-shadow: 0 0 20px rgba(0, 255, 195, 0.3);
+}
+
+/* Celdas seleccionadas y encontradas */
+.cell.selected {
+  background: rgba(0, 77, 64, 0.6); /* verde semitransparente */
+  border-color: #00ffc3;
+  color: #ffffff;
+  text-shadow: 0 0 10px #00ffc3;
+}
+
+.cell.found {
+  background: rgba(0, 255, 195, 0.7); /* neón semitransparente */
+  color: #02111f;
+  box-shadow: 0 0 20px #00ffc3, 0 0 40px #00ffc3;
+}
+
+/* Lista de palabras */
+.word-list {
+  background: linear-gradient(180deg, #011826, #001219);
+  border: 1px solid rgba(0, 255, 195, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 195, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.word {
+  color: #00ffc3;
+  text-shadow: 0 0 6px rgba(0, 255, 195, 0.6);
+}
+
+.word.found {
+  color: #1affd5;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* Panel lateral */
+.panel {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+
+/* Botones */
+.btn.primary {
+  background: linear-gradient(90deg, #00ffc3, #00aaff);
+  color: #001020;
+  font-weight: 900;
+  text-shadow: none;
+  box-shadow: 0 0 15px rgba(0, 255, 195, 0.4);
+}
+
+.btn.primary:hover {
+  box-shadow: 0 0 25px #00ffc3, 0 0 40px #00aaff;
+  transform: scale(1.05);
+}
+
+/* Letras y tipografía gamer */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+/* ======== AJUSTES: "Palabras a encontrar" + BARRA DE INFO (Jugador/Nivel/Puntos) ======== */
+
+/* Encabezado "Palabras a encontrar" */
+aside.panel h3 {
+  color: #00ffc3;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-shadow: 0 0 10px rgba(0, 255, 195, 0.35);
+  margin: 0 0 10px;
+}
+
+/* Contenedor de la lista */
+#wordList {
+  background: linear-gradient(180deg, rgba(0,10,20,0.6), rgba(0,6,12,0.8));
+  border: 1px solid rgba(0,255,195,0.12);
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,255,195,0.03);
+}
+
+/* Cada palabra dentro del listado */
+#wordList .word {
+  background: linear-gradient(180deg, rgba(0,20,30,0.15), rgba(0,12,18,0.08));
+  color: #c8ffec;
+  text-shadow: 0 0 6px rgba(0, 255, 195, 0.25);
+  border: 1px solid rgba(0,255,195,0.06);
+  padding: 8px 10px;
+  border-radius: 10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  font-weight:800;
+}
+
+/* Estado encontrada dentro de la lista */
+#wordList .word.found {
+  background: linear-gradient(90deg, rgba(0,255,195,0.12), rgba(0,170,255,0.06));
+  color: #011219;
+  text-decoration: line-through;
+  opacity: 0.95;
+  box-shadow: 0 6px 22px rgba(0,255,195,0.08);
+}
+
+/* Ajuste del tag (número de letras) para que contraste */
+#wordList .tag {
+  background: rgba(0,0,0,0.18);
+  color: #e6fff4;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(0,255,195,0.06);
+}
+
+/* ===== Barra de información (Jugador / Nivel / Puntos / Tiempo / Mejor) ===== */
+
+/* Forzar lectura en todos los elementos de la info-row */
+.info-row, .stats, .stat {
+  color: #c8ffec !important;
+  text-shadow: 0 0 6px rgba(0, 255, 195, 0.35);
+}
+
+/* Estilo específico para las "stat" */
+.info-row .stat {
+  background: linear-gradient(180deg, rgb(39, 203, 110), rgba(9, 173, 255, 0.219));
+  border: 1px solid rgba(0,255,195,0.06);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 900;
+  box-shadow: inset 0 -6px 12px rgba(0,0,0,0.12);
+}
+
+/* Etiquetas dentro de cada stat (ej. "Nivel:", "Puntos:") */
+.info-row .stat span, .info-row .stat strong {
+  color: #ffffff;
+  font-weight: 900;
+  text-shadow: 0 0 8px rgb(255, 255, 255);
+}
+
+/* Hacer que el nombre del jugador destaque */
+.stat#playerName, .stat #playerName {
+  color: #f4f816bd; /* amarillo pálido legible con neón */
+  background: linear-gradient(90deg, rgba(255,247,214,0.06), rgba(0,0,0,0.02));
+  border: 1px solid rgba(255,247,214,0.06);
+  box-shadow: 0 6px 18px rgba(255,247,214,0.03);
+}
+
+/* Alineación y separación responsive */
+.info-row { gap: 12px; flex-wrap:wrap; }
+
+/* Pequeña mejora en móvil: reducir el padding de cada stat */
+@media (max-width: 700px) {
+  .info-row .stat { padding: 6px 8px; font-size: 0.9rem; }
+  #wordList .word { font-size: 0.95rem; }
+}
+/* ======== AJUSTES DE VISIBILIDAD PARA EL ESTILO GAMER ======== */
+
+/* Texto de panel lateral (jugador, nivel, puntos) */
+.stats, .stat, .info-row, .title, .subtitle, .small {
+  color: #ffffff !important;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+/* Panel de información */
+.panel {
+  color: #c8ffec;
+}
+
+/* Tabla de registros */
+.score-table {
+  background: rgba(255, 255, 255, 0.15); /* blanco muy transparente */
+  color: #000000; /* texto neón para que resalte */
+  border: 1px solid rgba(0, 255, 195, 0.3); /* borde semi-neón */
+  box-shadow: 0 0 10px rgba(0, 255, 195, 0.2); /* sombra suave */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.score-table thead {
+  background: rgba(36, 194, 122, 0.4); /* encabezado semi-transparente verde neón */
+  color: #ffffff; /* texto claro */
+  font-weight: 900;
+  text-shadow: 0 0 6px rgba(0, 255, 195, 0.3);
+}
+
+.score-table tbody tr:nth-child(even) {
+  background: rgba(36, 194, 122, 0.1); /* filas pares suaves */
+}
+
+.score-table tbody tr:nth-child(odd) {
+  background: rgba(0, 255, 195, 0.05); /* filas impares muy ligeras */
+}
+
+.score-table td, .score-table th {
+  border-bottom: 1px solid rgba(0, 255, 195, 0.2);
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.score-table tr:hover {
+  background: rgba(0, 255, 195, 0.2); /* resalta al pasar el cursor */
+  transition: 0.3s;
+}
+
+
+
+/* Encabezados del panel */
+.info-row strong, .stats span {
+  color: #00ffc3;
+}
+
+/* Hover o animación sutil al pasar por filas */
+.score-table tr:hover {
+  background: rgba(0, 255, 195, 0.2);
+  transition: 0.3s;
+}

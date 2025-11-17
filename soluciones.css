@@ -1,0 +1,515 @@
+/* ==========================================================
+   CSS COMPLETO - PÁGINA "SOLUCIONES"
+   ========================================================== */
+
+/* === VARIABLES === */
+:root {
+  --azul-marino: #014F86;
+  --azul-agua: #0099cc;
+  --azul-cielo: #71C9CE;
+  --verde-eco: #2a9d8f;
+  --verde-bosque: #2A7F62;
+  --arena: #f0d28b;
+  --gris: #f5f5f5;
+  --gris-texto: #444;
+  --blanco: #FFFFFF;
+  --dorado: #C9A227;
+  --sombra: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --header-height: 70px;
+}
+
+/* === RESET BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: var(--gris);
+  color: var(--gris-texto);
+  overflow-x: hidden;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: linear-gradient(90deg, var(--azul-marino), var(--verde-bosque));
+  color: var(--blanco);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
+}
+
+.header.scrolled {
+  background: linear-gradient(90deg, #013b64, #1d5c47);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  padding: 8px 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover { transform: scale(1.1); }
+
+.logo img {
+  width: 45px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.logo span {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--blanco);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--arena);
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--arena);
+}
+
+/* Sección de introducción */
+.solutions-intro {
+  text-align: center;
+  padding: 5rem 2rem 3rem;
+  background: linear-gradient(135deg, #dff6ff, var(--arena));
+  border-bottom: 4px solid var(--azul-marino);
+}
+
+.main-title {
+  font-size: 2.2rem;
+  color: var(--azul-marino);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  color: var(--gris-texto);
+}
+
+.btn-scroll {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  background: var(--azul-marino);
+  color: var(--blanco);
+  border-radius: 25px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.btn-scroll:hover {
+  background: var(--verde-eco);
+  color: var(--arena);
+}
+
+/* 💧 Grid de soluciones */
+.solutions-grid-section {
+  padding: 4rem 2rem;
+  background: var(--blanco);
+}
+
+.grid-cards {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-width: 1100px;
+  margin: auto;
+}
+
+.solution-card {
+  background: var(--blanco);
+  border-radius: 25px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--sombra);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease, color 0.4s ease;
+  color: var(--azul-marino);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.solution-card::before {
+  content: "";
+  position: absolute;
+  width: 130%;
+  height: 130%;
+  top: -15%;
+  left: -15%;
+  background: linear-gradient(45deg, var(--azul-marino), var(--verde-eco));
+  transform: rotate(25deg) scale(0);
+  transition: transform 0.6s ease;
+  z-index: 0;
+}
+
+.solution-card:hover::before {
+  transform: rotate(25deg) scale(1);
+}
+
+.solution-card .icon {
+  font-size: 3rem;
+  margin-bottom: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.solution-card h2,
+.solution-card p,
+.solution-card .info-link {
+  position: relative;
+  z-index: 1;
+}
+
+.solution-card p.card-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.solution-card .info-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--azul-agua);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.solution-card:hover {
+  color: var(--blanco);
+}
+
+.solution-card:hover .info-link {
+  color: var(--arena);
+}
+
+/* ⚙️ Infografía interactiva */
+.infografia {
+  background: linear-gradient(135deg, #e7f7f7, #ffffff);
+  padding: 4rem 2rem;
+  text-align: center;
+  border-top: 3px solid var(--azul-marino);
+}
+
+.infografia h2 {
+  color: var(--azul-marino);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.section-subtitle {
+  color: var(--gris-texto);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.steps-flow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.step-item {
+  background: var(--blanco);
+  border: 3px solid var(--azul-marino);
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  width: 180px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: var(--sombra);
+  font-weight: 600;
+  text-align: center;
+}
+
+.step-item:hover,
+.step-item.active {
+  background: linear-gradient(135deg, var(--azul-agua), var(--verde-eco));
+  color: var(--blanco);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* 🟦 Carrusel / Galería */
+.carousel-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 4px solid var(--azul-marino);
+  box-shadow: var(--sombra);
+  position: relative;
+  background: var(--blanco);
+}
+
+.carousel-slide {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.8s ease-in-out;
+}
+
+.carousel-slide img {
+  width: calc(100% / 3 - 13.33px);
+  height: 450px;
+  object-fit: cover;
+  border-radius: 20px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.carousel-slide img:hover {
+  transform: scale(1.03);
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(1, 79, 134, 0.85);
+  border: none;
+  color: var(--blanco);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  background: var(--azul-agua);
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+/* Compromiso del usuario Mejorado */
+.compromiso {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #defcf9, #ffffff);
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: 25px;
+  max-width: 800px;
+  margin: 2rem auto;
+  box-shadow: var(--sombra);
+}
+
+#waves-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.compromiso * {
+  position: relative;
+  z-index: 1;
+}
+
+.compromiso h2 {
+  color: var(--azul-marino);
+  margin-bottom: 1rem;
+}
+
+.compromiso-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.compromiso-form input {
+  padding: 0.8rem 1rem;
+  border-radius: 30px;
+  border: 2px solid var(--azul-marino);
+  width: 220px;
+  transition: 0.3s;
+}
+
+.compromiso-form input:focus {
+  border-color: var(--verde-eco);
+  outline: none;
+}
+
+.compromiso-form button {
+  padding: 0.8rem 1.5rem;
+  background: var(--verde-eco);
+  color: var(--blanco);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.compromiso-form button:hover {
+  background: var(--azul-marino);
+  color: var(--arena);
+}
+
+/* Lista de compromisos como tarjetas */
+.compromiso-list {
+  list-style: none;
+  max-width: 500px;
+  margin: 2rem auto;
+  text-align: left;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.compromiso-list li {
+  background: var(--blanco);
+  border: 2px solid var(--azul-agua);
+  border-radius: 20px;
+  padding: 0.8rem 1rem;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.compromiso-list li p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--gris-texto);
+}
+
+.compromiso-list li p.nombre {
+  font-weight: 600;
+  color: var(--azul-marino);
+}
+
+.compromiso-list li p.accion {
+  font-style: italic;
+  color: var(--verde-eco);
+}
+
+.compromiso-list li p.descripcion {
+  margin-left: 0.3rem;
+}
+
+/* Botón de borrar */
+.compromiso-list li .btn-borrar {
+  align-self: flex-end;
+  background: var(--dorado);
+  border: none;
+  color: var(--blanco);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.compromiso-list li .btn-borrar:hover {
+  background: var(--arena);
+  color: var(--azul-marino);
+}
+
+/* ==== FOOTER ==== */
+footer {
+  background-color: var(--azul-marino);
+  color: var(--blanco);
+  text-align: center;
+  padding: 15px 0;
+  font-weight: 500;
+}
+
+.footer-bottom {
+  font-size: 0.9rem;
+}
+
+/* Animaciones suaves */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.9s ease forwards;
+}
+
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+.fade-in:nth-child(2) { animation-delay: 0.2s; }
+.fade-in:nth-child(3) { animation-delay: 0.4s; }
+.fade-in:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar { flex-direction: column; }
+  .nav-links { flex-wrap: wrap; justify-content: center; }
+  .main-title { font-size: 1.8rem; }
+  .solution-card { padding: 1.5rem; }
+  .btn-scroll { font-size: 0.9rem; padding: 0.6rem 1.2rem; }
+  .carousel-slide img { height: 300px; width: 100%; }
+  .step-item { width: 140px; padding: 0.8rem; }
+  .compromiso { padding: 2rem 1rem; }
+  .compromiso-form input { width: 100%; max-width: 220px; }
+}

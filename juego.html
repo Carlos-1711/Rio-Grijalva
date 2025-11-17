@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sopa de Letras — Contaminación del río</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="juego.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+ <header class="header">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="img/logo.jpg" alt="Logo Río Grijalva" />
+      <span>Río Grijalva</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="acerca.html">Acerca</a></li>
+      <li><a href="metales.html">Metales</a></li>
+      <li><a href="consecuencias.html">Consecuencias</a></li>
+      <li><a href="soluciones.html">Soluciones</a></li>
+      <li><a href="juego.html" class="active">Jugar</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- ===== CONTENIDO DEL JUEGO ===== -->
+  <main>
+    <div class="container" style="margin-top: 120px">
+        <div class="brand">
+          <div>
+          </div>
+        </div>
+        <div class="controls">
+          <select id="level" class="select">
+            <option value="easy">Fácil (12×12)</option>
+            <option value="medium">Medio (15×15)</option>
+            <option value="hard">Difícil (18×18)</option>
+          </select>
+          <button id="startBtn" class="btn primary">Iniciar</button>
+          <button id="restartBtn" class="btn">Reiniciar</button>
+        </div>
+      </div>
+
+      <div class="layout">
+        <div class="panel grid-wrap">
+          <div class="info-row">
+            <div class="stats">
+              <div class="stat">
+                Jugador: <span id="playerName">-</span>
+                <button id="changeNameBtn" class="btn small" style="margin-left:6px;padding:4px 8px;">✏️</button>
+              </div>
+              <div class="stat">Nivel: <span id="lvlTag">Fácil</span></div>
+              <div class="stat">Puntos: <span id="score">0</span></div>
+              <div class="stat">Encontradas: <span id="foundCount">0</span>/<span id="totalWords">4</span></div>
+            </div>
+            <div class="stats">
+              <div class="stat">Tiempo: <span id="timer">00:00</span></div>
+              <div class="stat">Mejor: <span id="best">0</span></div>
+            </div>
+          </div>
+
+          <div id="grid"></div>
+
+          <div style="margin-top:12px;display:flex;gap:10px">
+            <button id="hintBtn" class="btn">Sugerencia</button>
+            <button id="solveBtn" class="btn">Mostrar solución</button>
+          </div>
+
+          <div class="footer small">
+            Selecciona letras con clic y arrastre (o clics individuales). La selección se valida al soltar el mouse.
+          </div>
+        </div>
+
+        <aside class="panel">
+          <h3>Palabras a encontrar</h3>
+          <div id="wordList" class="word-list"></div>
+          <div style="margin-top:12px">
+            <h4>Resultados</h4>
+            <div id="results" class="small">Aquí aparecerán tus últimos movimientos.</div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- ===== HISTORIAL DE PUNTAJES ===== -->
+      <section class="panel" id="scoreHistoryPanel">
+        <h3> Mejores Puntajes</h3>
+        <table id="scoreHistory" class="score-table">
+          <thead>
+            <tr><th>Posición</th><th>Jugador</th><th>Puntaje</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Proyecto Ambiental — <strong>Río Grijalva</strong> | Desarrollado por <strong>Equipo 2 UNACH</strong></p>
+    </div>
+  </footer>
+
+  <div id="modal" class="confetti" style="display:none"></div>
+
+  <div id="winModal" aria-hidden="true">
+    <div class="box">
+      <h2>¡Ganaste!</h2>
+      <p id="finalScore">Puntaje final: 0 pts.</p>
+      <div class="actions">
+        <button onclick="closeWinModal()" class="btn">Cerrar</button>
+        <button onclick="replay()" class="btn primary">Volver a jugar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="juego.js"></script>
+</body>
+</html>
